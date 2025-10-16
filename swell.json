@@ -1,0 +1,13 @@
+{
+  "description": "A tax service example app",
+  "id": "tax_example",
+  "name": "Tax Example",
+  "type": "integration",
+  "version": "1.0.0",
+  "permissions": [],
+  "extensions": [
+    {
+      "type": "tax"
+    }
+  ]
+}

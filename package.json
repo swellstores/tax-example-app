@@ -1,0 +1,12 @@
+{
+  "description": "A tax service example app",
+  "workspaces": [
+    "frontend"
+  ],
+  "devDependencies": {
+    "@swell/app-types": "^1.0.5"
+  },
+  "name": "tax_example",
+  "scripts": {},
+  "version": "1.0.0"
+}
