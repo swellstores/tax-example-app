@@ -1,0 +1,11 @@
+{
+  "label": "Tax settings",
+  "description": "Example tax configuration settings",
+  "fields": [
+    {
+      "id": "api_key",
+      "label": "API key",
+      "type": "text"
+    }
+  ]
+}
