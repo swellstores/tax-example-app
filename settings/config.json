@@ -3,9 +3,11 @@
   "description": "Example tax configuration settings",
   "fields": [
     {
-      "id": "api_key",
-      "label": "API key",
-      "type": "text"
+      "id": "rate",
+      "label": "Tax rate %",
+      "type": "number",
+      "ui": "float",
+      "digits": 2
     }
   ]
 }
