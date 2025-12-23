@@ -1,3 +1,5 @@
+import { getAppConfigSettings, roundToDecimals } from "./lib";
+
 export const config: SwellConfig = {
   extension: "example",
   description: "Provide tax rates from Example Tax Service",
@@ -8,23 +10,22 @@ export const config: SwellConfig = {
 };
 
 export default async function (req: SwellRequest) {
-  const { data } = req;
+  const { items } = req.data;
+  const settings = await getAppConfigSettings(req);
+  const taxRate = roundToDecimals(settings.rate / 100);
 
-  const taxRate = 0.1; // 10% tax rate
-  const items = data.items || [];
-  
-  const taxedItems = items.map((item: any) => ({
+  const taxedItems = (items || []).map((item: any) => ({
     id: item.id,
     taxes: [
       {
         id: "example-tax",
-        amount: item.price * taxRate,
+        amount: roundToDecimals(item.price_total * taxRate),
       },
     ],
   }));
 
   const totalTax = taxedItems.reduce((sum: number, item: any) => {
-    return sum + item.taxes[0].price;
+    return sum + item.taxes[0].amount;
   }, 0);
 
   return {
@@ -32,7 +33,7 @@ export default async function (req: SwellRequest) {
     taxes: [
       {
         id: "example-tax",
-        amount: totalTax,
+        amount: roundToDecimals(totalTax),
         rate: taxRate,
       },
     ],
